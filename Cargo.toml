@@ -1,0 +1,20 @@
+[package]
+name = "funst"
+version = "0.1.0"
+authors = ["Takeru Ohta <phjgt308@gmail.com>"]
+edition = "2018"
+description = "A tiny command-line tool to calculate fundamental statistics of numbers given via stdin"
+homepage = "https://github.com/sile/funst"
+repository = "https://github.com/sile/funst"
+readme = "README.md"
+categories = ["command-line-utilities"]
+license = "MIT"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+anyhow = "1"
+ordered-float = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+structopt = "0.3"
