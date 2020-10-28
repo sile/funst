@@ -41,6 +41,7 @@ fn main() -> anyhow::Result<()> {
         max: values[n - 1],
     };
     serde_json::to_writer_pretty(std::io::stdout().lock(), &stat)?;
+    println!();
 
     Ok(())
 }
