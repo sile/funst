@@ -1,6 +1,6 @@
 [package]
 name = "funst"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Takeru Ohta <phjgt308@gmail.com>"]
 edition = "2018"
 description = "A tiny command-line tool to calculate fundamental statistics of numbers given via stdin"
