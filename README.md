@@ -25,7 +25,7 @@ Installation
 
 ### Precompiled binaries
 
-Precompiled binaries for Linux are available in the [releases] page.
+Precompiled binaries for Linux and Windows are available in the [releases] page.
 
 ```console
 $ curl -L https://github.com/sile/funst/releases/download/${VERSION}/funst-${VERSION}.linux-amd64 -o funst
