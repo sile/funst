@@ -28,11 +28,20 @@ jobs:
           target: x86_64-unknown-linux-musl
           override: true
 
-      - name: Run cargo build
+      - name: Install cross
+        uses: actions-rs/cargo@v1
+        with:
+          command: install
+          args: cross
+
+      - name: Run cargo build for Linux
         uses: actions-rs/cargo@v1
         with:
           command: build
           args: --release --target=x86_64-unknown-linux-musl
+
+      - name: Run cargo build for Windows
+        run: cross build --release --target x86_64-pc-windows-gnu
 
       - id: create-release
         uses: actions/create-release@v1
@@ -51,4 +60,13 @@ jobs:
           upload_url: ${{ steps.create-release.outputs.upload_url }}
           asset_path: target/x86_64-unknown-linux-musl/release/funst
           asset_name: funst-${{ steps.get_version.outputs.VERSION }}.linux-amd64
+          asset_content_type: application/octet-stream
+
+      - uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create-release.outputs.upload_url }}
+          asset_path: target/x86_64-pc-windows-gnu/release/funst.exe
+          asset_name: funst-${{ steps.get_version.outputs.VERSION }}.exe
           asset_content_type: application/octet-stream
