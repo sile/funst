@@ -20,26 +20,13 @@ jobs:
       - name: Install dependent packages
         run: sudo apt install -y musl-tools
 
-      - name: Install stable toolchain
-        uses: actions-rs/toolchain@b2417cde72dcf67f306c0ae8e0828a81bf0b189f # v1.0.6
-        with:
-          profile: minimal
-          toolchain: stable
-          target: x86_64-unknown-linux-musl
-          override: true
-
+      - run: rustup update stable
+      - run: rustup default stable
+      - run: rustup target add x86_64-unknown-linux-musl
       - name: Install cross
-        uses: actions-rs/cargo@ae10961054e4aa8b4aa7dffede299aaf087aa33b # v1.0.1
-        with:
-          command: install
-          args: cross
-
+        run: cargo install cross
       - name: Run cargo build for Linux
-        uses: actions-rs/cargo@ae10961054e4aa8b4aa7dffede299aaf087aa33b # v1.0.1
-        with:
-          command: build
-          args: --release --target=x86_64-unknown-linux-musl
-
+        run: cargo build --release --target=x86_64-unknown-linux-musl
       - name: Run cargo build for Windows
         run: cross build --release --target x86_64-pc-windows-gnu
 
